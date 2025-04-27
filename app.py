@@ -5,13 +5,37 @@
 # it under the terms of the GNU General Public License...
 
 import streamlit as st
+import importlib
 
 # Hiển thị ảnh banner trong sidebar
 st.sidebar.image("images/anhtruong.jpg", use_container_width=True)
+st.sidebar.title("SachChat")
+#trang_chu = st.Page("thuvien/home.py",title="Trang Chủ")
+#trang_about = st.Page("thuvien/about.py",title= "Về Chúng Tôi")
+#cac_trang = [trang_chu,trang_about]
+#menu = st.navigation(cac_trang)
+#menu.run()
+selected_class = st.sidebar.selectbox(
+    "Chọn lớp:",
+    ["Lớp 8"]  # Sau này thêm "Lớp 9", "Lớp 10", v.v. vào đây
+)
+if selected_class == "Lớp 8":
+    st.sidebar.title("Chọn môn học")
+    subject = st.sidebar.selectbox(
+        "Môn học:",
+        ["Lịch sử", "Địa lý", "Giáo dục công dân", "Giáo dục địa phương"]
+    )
+    subject_files = {
+        "Lịch sử": "lichsu",
+        "Địa lý": "dialy",
+        "Giáo dục công dân": "giaoduccongdan",
+        "Giáo dục địa phương": "giaoducdiaphuong"
+    }
+    selected_file = subject_files.get(subject)
 
-st.title("SachChat")
-trang_chu = st.Page("pages/home.py",title="Trang Chủ")
-trang_about = st.Page("pages/about.py",title= "Về Chúng Tôi")
-cac_trang = [trang_chu,trang_about]
-menu = st.navigation(cac_trang)
-menu.run()
+    if selected_file:
+        # Import và chạy module tương ứng
+        module = importlib.import_module(selected_file)
+        module.run()  # Giả sử trong mỗi file có hàm `run()`
+    else:
+        st.write("Chưa có nội dung cho môn học này.")
