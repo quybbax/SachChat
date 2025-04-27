@@ -39,3 +39,11 @@ if selected_class == "Lớp 8 (Bộ sách KNTT)":
         module.run()  # Giả sử trong mỗi file có hàm `run()`
     else:
         st.write("Chưa có nội dung cho môn học này.")
+
+st.sidebar.markdown("<hr>", unsafe_allow_html=True)
+st.sidebar.markdown("""Nhóm dự thi lớp 8A Trường THCS Nguyễn Nghiêm, Đức Phổ. 
+Thành viên: 
+* Ngô Gia Quý
+* Huỳnh Nguyễn Thảo Vi
+* Võ Huỳnh Như Quỳnh
+* Phạm Quang Minh""")
