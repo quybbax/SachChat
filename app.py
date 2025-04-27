@@ -17,9 +17,9 @@ st.sidebar.title("SachChat")
 #menu.run()
 selected_class = st.sidebar.selectbox(
     "Chọn lớp:",
-    ["Lớp 8"]  # Sau này thêm "Lớp 9", "Lớp 10", v.v. vào đây
+    ["Lớp 8 (Bộ sách KNTT)"]  # Sau này thêm "Lớp 9", "Lớp 10", v.v. vào đây
 )
-if selected_class == "Lớp 8":
+if selected_class == "Lớp 8 (Bộ sách KNTT)":
     st.sidebar.title("Chọn môn học")
     subject = st.sidebar.selectbox(
         "Môn học:",
