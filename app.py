@@ -26,7 +26,7 @@ if selected_class == "Lớp 8 (Bộ sách KNTT)":
     st.sidebar.title("Chọn môn học")
     subject = st.sidebar.selectbox(
         "Môn học:",
-        ["Lịch sử", "Địa lý", "Giáo dục công dân", "Giáo dục địa phương"]
+        ["---", "Lịch sử", "Địa lý", "Giáo dục công dân", "Giáo dục địa phương"]
     )
     subject_files = {
         "Lịch sử": "lichsu",
@@ -41,7 +41,7 @@ if selected_class == "Lớp 8 (Bộ sách KNTT)":
         module = importlib.import_module(selected_file)
         module.run()  # Giả sử trong mỗi file có hàm `run()`
     else:
-        st.write("Chưa có nội dung cho môn học này.")
+        st.write("# Hãy chọn môn học")
 
 st.sidebar.markdown("<hr>", unsafe_allow_html=True)
 st.sidebar.markdown("""Nhóm dự thi lớp 8A Trường THCS Nguyễn Nghiêm, Đức Phổ. 
