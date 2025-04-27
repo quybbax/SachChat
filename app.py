@@ -7,6 +7,10 @@
 import streamlit as st
 import importlib
 
+st.set_page_config(
+    page_title="SachChat - Sản phầm dự thi Sáng tạo TTN-NĐ Quảng Ngãi lần 10 - 2025",
+)
+
 # Hiển thị ảnh banner trong sidebar
 st.sidebar.image("images/anhtruong.jpg", use_container_width=True)
 st.sidebar.title("SachChat")
@@ -26,19 +30,19 @@ if selected_class == "Lớp 8 (Bộ sách KNTT)":
     st.sidebar.title("Chọn môn học")
     subject = st.sidebar.selectbox(
         "Môn học:",
-        ["---", "Lịch sử", "Giáo dục công dân", "Giáo dục địa phương"]
+        ["---", "Giáo dục công dân", "Giáo dục địa phương", "Lịch sử"]
     )
     subject_files = {
-        "Lịch sử": "lichsu",
         "Giáo dục công dân": "gdcd",
-        "Giáo dục địa phương": "gddp"
+        "Giáo dục địa phương": "gddp",
+        "Lịch sử": "lichsu"
     }
     selected_file = subject_files.get(subject)
 
     if selected_file:
         # Import và chạy module tương ứng
         module = importlib.import_module(selected_file)
-        module.run()  # Giả sử trong mỗi file có hàm `run()`
+        module.run()
     else:
         st.write("# Hãy chọn môn học")
 
