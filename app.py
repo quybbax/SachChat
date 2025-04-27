@@ -29,7 +29,7 @@ if selected_class == "Lớp 8 (Bộ sách KNTT)":
         "Lịch sử": "lichsu",
         "Địa lý": "dialy",
         "Giáo dục công dân": "giaoduccongdan",
-        "Giáo dục địa phương": "giaoducdiaphuong"
+        "Giáo dục địa phương": "gddp"
     }
     selected_file = subject_files.get(subject)
 
