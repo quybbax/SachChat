@@ -9,9 +9,9 @@ from thuvien import sach
 from thuvien import chat
 from thuvien import giaodien
 
-cacbaihoc = sach.lay_sach("thuvien/dulieu/lop8/gddp.in")
-csdl = sach.nap_csdl(cacbaihoc,"thuvien/dulieu/lop8/gddp8.data")
+cacbaihoc = sach.lay_sach("thuvien/dulieu/lop8/gdcd.in")
+csdl = sach.nap_csdl(cacbaihoc,"thuvien/dulieu/lop8/gdcd8.data")
 
 
 def run():
-    giaodien.giao_dien_chat("Giáo dục địa phương", cacbaihoc, csdl)
+    giaodien.giao_dien_chat("Giáo dục công dân", cacbaihoc, csdl)

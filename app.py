@@ -26,12 +26,11 @@ if selected_class == "Lớp 8 (Bộ sách KNTT)":
     st.sidebar.title("Chọn môn học")
     subject = st.sidebar.selectbox(
         "Môn học:",
-        ["---", "Lịch sử", "Địa lý", "Giáo dục công dân", "Giáo dục địa phương"]
+        ["---", "Lịch sử", "Giáo dục công dân", "Giáo dục địa phương"]
     )
     subject_files = {
         "Lịch sử": "lichsu",
-        "Địa lý": "dialy",
-        "Giáo dục công dân": "giaoduccongdan",
+        "Giáo dục công dân": "gdcd",
         "Giáo dục địa phương": "gddp"
     }
     selected_file = subject_files.get(subject)

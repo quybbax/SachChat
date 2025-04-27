@@ -9,8 +9,8 @@ from thuvien import sach
 from thuvien import chat
 from thuvien import giaodien
 
-cacbaihoc = sach.lay_sach("thuvien/dulieu/lop8/lichsu.txt")
-csdl = sach.nap_csdl(cacbaihoc,"thuvien/dulieu/lop8/lichsu.data")
+cacbaihoc = sach.lay_sach("thuvien/dulieu/lop8/lichsu.in")
+csdl = sach.nap_csdl(cacbaihoc,"thuvien/dulieu/lop8/lichsu8.data")
 
 
 def run():

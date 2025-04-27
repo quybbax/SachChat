@@ -7,9 +7,11 @@
 import faiss
 import os
 from sentence_transformers import SentenceTransformer
+from . import descript
 def lay_sach(ten_file):
-    f=open(ten_file,"r",encoding="utf-8")
+    f=open(ten_file,"rb")
     noidung = f.read()
+    noidung = descript.decrypt(noidung, os.getenv("CRYPTO_CODE"))
     dsbaihoc = noidung.split("\n\n")
     return (dsbaihoc)
 

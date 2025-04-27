@@ -9,12 +9,23 @@ import os
 from openai import OpenAI
 
 def cau_hoi_day_du(cauhoi, baihoc):
-    chdd = "Dựa vào nội dung bài học sau đây, hãy trả lời câu hỏi một cách rõ ràng, mạch lạc và đầy đủ. "\
-    + "Nếu câu hỏi không liên quan đến nội dung bài học, hãy trả lời: "\
-    "`Xin lỗi, câu hỏi của bạn không liên quan đến nội dung sách.`\n\n"\
-    "Nội dung bài học: " + baihoc + "\n\n" \
-    "Câu hỏi: " + cauhoi
+    chdd = f"""
+Bạn là trợ lý giảng dạy. Dưới đây là nội dung bài học:
+
+\"\"\"
+{baihoc}
+\"\"\"
+
+Dựa trên nội dung bài học trên, hãy trả lời câu hỏi sau:
+
+\"\"\"
+{cauhoi}
+\"\"\"
+
+Chỉ trả lời dựa trên nội dung bài học. Nếu không tìm thấy thông tin, hãy trả lời: "Tôi chưa đủ thông tin để trả lời."
+"""
     return chdd
+
 
 API_URL = "https://api.deepseek.com/your-endpoint"
 
