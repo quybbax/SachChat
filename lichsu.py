@@ -26,7 +26,7 @@ def run():
     if cau_hoi:
         st.chat_message("user").markdown(cau_hoi)
         baihoc = sach.lay_bai_hoc(cacbaihoc, csdl, cau_hoi)
-        tra_loi = chat.hoi(cau_hoi, baihoc)
+        tra_loi = chat.hoi_deepseek(cau_hoi, baihoc)
         st.chat_message("ai").markdown(tra_loi)
         lichsuchat1 = {"vaitro": "user", "noidung": cau_hoi}
         st.session_state.danhsachtinnhan.append(lichsuchat1)
