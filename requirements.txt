@@ -1,5 +1,13 @@
+torch
 streamlit
 sentence_transformers
 faiss-cpu
 openai
 cryptography
+tiktoken
+langchain
+langchain-community
+langchain-openai
+huggingface_hub
+transformers
+langchain-huggingface

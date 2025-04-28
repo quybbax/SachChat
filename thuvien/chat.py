@@ -4,69 +4,31 @@
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License...
 
-import requests
+from langchain_openai import ChatOpenAI
 import os
-from openai import OpenAI
+from langchain.chains import RetrievalQA
 
-def cau_hoi_day_du(cauhoi, baihoc):
-    chdd = f"""
-Bạn là trợ lý giảng dạy. Dưới đây là nội dung bài học:
+llm = ChatOpenAI(
+    base_url="https://api.deepseek.com/v1",
+    api_key=os.getenv("DEEPSEEK_API"),
+    model="deepseek-chat",
+    temperature=0.7,
+    max_tokens=1024
+)
 
-\"\"\"
-{baihoc}
-\"\"\"
-
-Dựa trên nội dung bài học trên, hãy trả lời câu hỏi sau:
-
-\"\"\"
-{cauhoi}
-\"\"\"
-
-Chỉ trả lời dựa trên nội dung bài học. Nếu không tìm thấy thông tin, hãy trả lời: "Tôi chưa đủ thông tin để trả lời."
-"""
-    return chdd
-
-
-API_URL = "https://api.deepseek.com/your-endpoint"
-
-HEADERS = {
-    "Authorization": f"Bearer {os.getenv("DEEPSEEK_API")}",
-    "Content-Type": "application/json",
-    "HTTP-Referer": "https://sachchat.streamlit.app/",
-    "X-Title": "SachChat"
-}
-
-def tao_data(cauhoidaydu):
-    data = {
-        "model": "deepseek-chat",
-        "messages": [
-            {"role": "system", "content": "Bạn là trợ lý học tập thông minh và chính xác cho học sinh Việt Nam."},
-            {"role": "user", "content": cauhoidaydu}
-        ],
-    }
-    return data
-
-def hoi(cauhoi,baihoc):
-    cauhoidaydu = cau_hoi_day_du(cauhoi,baihoc)
-    data = tao_data(cauhoidaydu)
-    response = requests.post(API_URL,headers=HEADERS,data=data)
-    if response.ok:
-        traloi = reponse.json()
-        noidung = traloi["choices"][0]["message"]["content"]
-        return noidung
-    else:
-        return "Lỗi: " + response.text
-
-def hoi_deepseek(cauhoi,baihoc):
-    cauhoidaydu = cau_hoi_day_du(cauhoi,baihoc)
-    client = OpenAI(api_key=os.getenv("DEEPSEEK_API"), base_url="https://api.deepseek.com")
-
-    response = client.chat.completions.create(
-        model="deepseek-chat",
-        messages=[
-            {"role": "system", "content": "Bạn là trợ lý học tập thông minh và chính xác cho học sinh Việt Nam."},
-            {"role": "user", "content": cauhoidaydu},
-        ],
-        stream=False
+def hoi(cauhoi, truyvan):
+    qa = RetrievalQA.from_chain_type(
+        llm=llm,
+        retriever=truyvan,
+        chain_type="stuff"
+        #chain_type="map_reduce"
     )
-    return response.choices[0].message.content
+    traloi = qa.invoke(cauhoi)
+    if 'result' in traloi:
+        ketqua = traloi['result']
+        ketqua = ketqua.replace("các đoạn văn được cung cấp", "sách giáo khoa")
+        ketqua = ketqua.replace("thông tin được cung cấp", "sách giáo khoa")
+        ketqua = ketqua.replace("tài liệu được cung cấp", "sách giáo khoa")
+        return ketqua
+    else:
+        return "Không tìm thấy câu trả lời trong kết quả."

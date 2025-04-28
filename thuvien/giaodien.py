@@ -5,10 +5,9 @@
 # it under the terms of the GNU General Public License...
 
 import streamlit as st
-from . import sach
 from . import chat
 
-def giao_dien_chat(title, cacbaihoc, csdl):
+def giao_dien_chat(title, truyvan):
     st.title(title)
     if "danhsachtinnhan" not in st.session_state:
         st.session_state.danhsachtinnhan = []
@@ -19,8 +18,7 @@ def giao_dien_chat(title, cacbaihoc, csdl):
 
     if cau_hoi:
         st.chat_message("user").markdown(cau_hoi)
-        baihoc = sach.lay_bai_hoc(cacbaihoc, csdl, cau_hoi)
-        tra_loi = chat.hoi_deepseek(cau_hoi, baihoc)
+        tra_loi = chat.hoi(cau_hoi, truyvan)
         st.chat_message("ai").markdown(tra_loi)
         lichsuchat1 = {"vaitro": "user", "noidung": cau_hoi}
         st.session_state.danhsachtinnhan.append(lichsuchat1)

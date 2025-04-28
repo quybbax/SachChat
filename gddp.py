@@ -4,14 +4,11 @@
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License...
 
-import streamlit as st
 from thuvien import sach
-from thuvien import chat
 from thuvien import giaodien
 
-cacbaihoc = sach.lay_sach("thuvien/dulieu/lop8/gddp.in")
-csdl = sach.nap_csdl(cacbaihoc,"thuvien/dulieu/lop8/gddp8.data")
-
+csdl = sach.nap_csdl("thuvien/dulieu/lop8/gddp.in","thuvien/dulieu/lop8/gddp8-kntt")
+truyvan = csdl.as_retriever()
 
 def run():
-    giaodien.giao_dien_chat("Giáo dục địa phương", cacbaihoc, csdl)
+    giaodien.giao_dien_chat("Giáo dục địa phương", truyvan)
