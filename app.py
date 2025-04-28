@@ -14,11 +14,7 @@ st.set_page_config(
 # Hiển thị ảnh banner trong sidebar
 st.sidebar.image("images/anhtruong.jpg", use_container_width=True)
 st.sidebar.title("SachChat")
-#trang_chu = st.Page("thuvien/home.py",title="Trang Chủ")
-#trang_about = st.Page("thuvien/about.py",title= "Về Chúng Tôi")
-#cac_trang = [trang_chu,trang_about]
-#menu = st.navigation(cac_trang)
-#menu.run()
+
 selected_class = st.sidebar.selectbox(
     "Chọn lớp:",
     [
