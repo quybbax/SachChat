@@ -23,7 +23,7 @@ def lay_sach(ten_file):
     sach = tachroi.split_documents(tailieu)
     return sach
 
-mohinh = HuggingFaceEmbeddings()
+mohinh = HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
 
 def ghi_csdl(sach, file_csdl):
     csdl = FAISS.from_documents(sach, mohinh)
